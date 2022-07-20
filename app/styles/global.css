@@ -1,0 +1,130 @@
+@font-face {
+    font-family: "Supreme-Variable";
+    src: url("/Supreme-Variable.woff2") format("woff2");
+    font-weight: 100 800;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SpaceMono-Regular";
+    src: url("/SpaceMono-Regular.ttf") format("truetype");
+    font-weight: 700;
+}
+
+body {
+    --shadow: 0 0.5px 0.7px rgba(0, 0, 0, 0.079),
+        0 1.6px 2.5px rgba(0, 0, 0, 0.059), 5px 7px 11px rgba(0, 0, 0, 0.121),
+        -5px -5px 10px rgba(255, 255, 255, 0.5);
+    --shadow-variant: 0 0.5px 0.7px rgba(0, 0, 0, 0.05),
+        0 1.6px 2.5px rgba(0, 0, 0, 0.03), 5px 7px 11px rgba(0, 0, 0, 0.01),
+        -5px -5px 10px rgba(255, 255, 255, 0.3);
+
+    --border: 1px solid rgba(0, 0, 0, 0.2);
+    --border-variant: 1px solid var(--secondary-variant);
+    --border-primary: 1px solid rgba(80, 152, 206, 0.3);
+
+    --background: hsla(202, 15%, 80%, 1);
+    --surface: hsla(202, 15%, 100%, 1);
+    --surface-t: hsla(202, 15%, 100%, 0.7);
+    --surface-variant: hsla(202, 15%, 90%, 1);
+    --primary: hsla(202, 39%, 43%, 1);
+    --primary-variant: hsla(202, 49%, 43%, 0.2);
+    --secondary: hsla(35, 60%, 50%, 1);
+    --secondary-variant: hsla(35, 60%, 50%, 0.2);
+    --on-background: hsla(17, 0%, 0%, 0.9);
+    --on-background-variant: hsla(17, 0%, 0%, 0.5);
+    --on-background-disabled: hsla(17, 0%, 0%, 0.3);
+    --error: hsla(354, 50%, 60%, 1);
+    --error-variant: hsla(354, 80%, 60%, 0.2);
+    --overlay: hsla(202, 15%, 90%, 0.6);
+
+    --font-family: "Supreme-Variable";
+    --font-family-alt: "SpaceMono-Regular";
+
+    --label: 300 0.75rem/1.25rem var(--font-family);
+    --label-alt: 300 0.75rem/1.25rem var(--font-family-alt);
+    --body1: 300 0.9rem/1.25rem var(--font-family);
+    --body2: 500 0.9rem/1.5rem var(--font-family);
+    --body-alt: 300 0.9rem/1.25rem var(--font-family-alt);
+    --subhead1: 300 1rem/1.5rem var(--font-family);
+    --subhead2: 500 1rem/1.75rem var(--font-family);
+    --title: 500 1.25rem/1.75rem var(--font-family);
+    --headline: 300 1.5rem/2rem var(--font-family);
+    --display-1: 300 2rem/2.5rem var(--font-family);
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
+    font-family: var(--font-family), var(--font-family-alt), sans-serif;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+input::placeholder {
+    color: var(--on-background-variant);
+}
+
+@keyframes noise-animation {
+    0% {
+        transform: translate(0, 0);
+    }
+    10% {
+        transform: translate(-5%, -5%);
+    }
+    20% {
+        transform: translate(-10%, 5%);
+    }
+    30% {
+        transform: translate(5%, -10%);
+    }
+    40% {
+        transform: translate(-5%, 15%);
+    }
+    50% {
+        transform: translate(-10%, 5%);
+    }
+    60% {
+        transform: translate(15%, 0);
+    }
+    70% {
+        transform: translate(0, 10%);
+    }
+    80% {
+        transform: translate(-15%, 0);
+    }
+    90% {
+        transform: translate(10%, 5%);
+    }
+    100% {
+        transform: translate(5%, 0);
+    }
+}
+
+.noise {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    width: 200%;
+    height: 200vh;
+    background: transparent
+        url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
+    background-repeat: repeat;
+    animation: noise-animation 0.2s infinite;
+    opacity: 0.9;
+    visibility: visible;
+}

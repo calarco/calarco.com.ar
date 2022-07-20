@@ -1,0 +1,192 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model aumentos {
+  id         Int       @id @default(autoincrement())
+  nombre     String?   @unique @db.VarChar(255)
+  porcentage Int
+  createdAt  DateTime  @db.Timestamptz(6)
+  updatedAt  DateTime  @db.Timestamptz(6)
+  precios    precios[]
+  userId     Int?
+  users      users? @relation(fields: [userId], references: [id])
+}
+
+model bancos {
+  id        Int      @id @default(autoincrement())
+  nombre    String   @unique @db.VarChar(255)
+  createdAt DateTime @db.Timestamptz(6)
+  updatedAt DateTime @db.Timestamptz(6)
+  cobros    cobros[]
+  userId    Int?
+  users     users? @relation(fields: [userId], references: [id])
+}
+
+model clientes {
+  id          Int      @id @default(autoincrement())
+  nombre      String   @unique @db.VarChar(255)
+  descripcion String   @db.VarChar(255)
+  createdAt   DateTime @db.Timestamptz(6)
+  updatedAt   DateTime @db.Timestamptz(6)
+  ventas      ventas[]
+  userId      Int?
+  users       users? @relation(fields: [userId], references: [id])
+}
+
+model cobros {
+  id             Int                @id @default(autoincrement())
+  deposito       DateTime           @db.Date
+  monto          Decimal            @db.Decimal(10, 2)
+  emision        DateTime           @db.Date
+  numero         String             @default("") @db.VarChar(255)
+  titular        String             @default("") @db.VarChar(255)
+  cuit           String             @default("") @db.VarChar(255)
+  observaciones  String             @default("") @db.VarChar(255)
+  estado         enum_cobros_estado @default(a_depositar)
+  salida         DateTime?          @db.Date
+  createdAt      DateTime           @db.Timestamptz(6)
+  updatedAt      DateTime           @db.Timestamptz(6)
+  libradorId     Int?
+  bancoId        Int?
+  destinatarioId Int?
+  bancos         bancos?            @relation(fields: [bancoId], references: [id])
+  destinatarios  destinatarios?     @relation(fields: [destinatarioId], references: [id])
+  libradores     libradores?        @relation(fields: [libradorId], references: [id])
+  userId         Int?
+  users          users? @relation(fields: [userId], references: [id])
+}
+
+model compras {
+  id           Int          @id @default(autoincrement())
+  fecha        DateTime     @db.Date
+  debe         Decimal      @default(0) @db.Decimal(10, 2)
+  haber        Decimal      @default(0) @db.Decimal(10, 2)
+  comprobante  String       @default("") @db.VarChar(255)
+  createdAt    DateTime     @db.Timestamptz(6)
+  updatedAt    DateTime     @db.Timestamptz(6)
+  proveedorId  Int?
+  proveedores  proveedores? @relation(fields: [proveedorId], references: [id])
+  userId       Int?
+  users        users? @relation(fields: [userId], references: [id])
+}
+
+model destinatarios {
+  id        Int      @id @default(autoincrement())
+  nombre    String   @unique @db.VarChar(255)
+  createdAt DateTime @db.Timestamptz(6)
+  updatedAt DateTime @db.Timestamptz(6)
+  cobros    cobros[]
+  pagos     pagos[]
+  userId    Int?
+  users     users? @relation(fields: [userId], references: [id])
+}
+
+model libradores {
+  id        Int      @id @default(autoincrement())
+  nombre    String   @unique @db.VarChar(255)
+  createdAt DateTime @db.Timestamptz(6)
+  updatedAt DateTime @db.Timestamptz(6)
+  cobros    cobros[]
+  userId    Int?
+  users     users? @relation(fields: [userId], references: [id])
+}
+
+model pagos {
+  id             Int               @id @default(autoincrement())
+  pago           DateTime          @db.Date
+  monto          Decimal           @db.Decimal(10, 2)
+  emision        DateTime          @db.Date
+  numero         String            @default("") @db.VarChar(255)
+  observaciones  String            @default("") @db.VarChar(255)
+  estado         enum_pagos_estado @default(a_pagar)
+  createdAt      DateTime          @db.Timestamptz(6)
+  updatedAt      DateTime          @db.Timestamptz(6)
+  destinatarioId Int?
+  destinatarios  destinatarios?    @relation(fields: [destinatarioId], references: [id])
+  userId         Int?
+  users          users? @relation(fields: [userId], references: [id])
+}
+
+model precios {
+  id          Int       @id @default(autoincrement())
+  articulo    Int
+  descripcion String    @db.VarChar(255)
+  peso        Decimal?  @db.Decimal(10, 2)
+  costo       Decimal?  @db.Decimal(10, 2)
+  costos      Json?     @db.Json
+  createdAt   DateTime  @db.Timestamptz(6)
+  updatedAt   DateTime  @db.Timestamptz(6)
+  aumentoId   Int?
+  aumentos    aumentos? @relation(fields: [aumentoId], references: [id])
+  userId      Int?
+  users       users? @relation(fields: [userId], references: [id])
+}
+
+model proveedores {
+  id          Int       @id @default(autoincrement())
+  nombre      String    @unique @db.VarChar(255)
+  descripcion String    @db.VarChar(255)
+  createdAt   DateTime  @db.Timestamptz(6)
+  updatedAt   DateTime  @db.Timestamptz(6)
+  compras     compras[]
+  userId      Int?
+  users       users? @relation(fields: [userId], references: [id])
+}
+
+model users {
+  id            Int      @id @default(autoincrement())
+  username      String   @unique @db.VarChar(255)
+  password      String   @db.VarChar(255)
+  createdAt     DateTime @db.Timestamptz(6)
+  updatedAt     DateTime @db.Timestamptz(6)
+  cobros        cobros[]
+  pagos         pagos[]
+  compras       compras[]
+  precios       precios[]
+  ventas        ventas[]
+  aumentos      aumentos[]
+  bancos        bancos[]
+  clientes      clientes[]
+  destinatarios destinatarios[]
+  libradores    libradores[]
+  proveedores   proveedores[]
+}
+
+model ventas {
+  id          Int       @id @default(autoincrement())
+  fecha       DateTime  @db.Date
+  debe        Decimal   @default(0) @db.Decimal(10, 2)
+  haber       Decimal   @default(0) @db.Decimal(10, 2)
+  comprobante String    @default("") @db.VarChar(255)
+  createdAt   DateTime  @db.Timestamptz(6)
+  updatedAt   DateTime  @db.Timestamptz(6)
+  clienteId   Int?
+  clientes    clientes? @relation(fields: [clienteId], references: [id])
+  userId      Int?
+  users       users? @relation(fields: [userId], references: [id])
+}
+
+enum enum_cobros_estado {
+  a_depositar   @map("A depositar")
+  depositado    @map("Depositado")
+  anulado       @map("Anulado")
+  posdatado     @map("Posdatado")
+  endosado      @map("Endosado")
+  devuelto      @map("Devuelto")
+  falla_tecnica @map("Falla tecnica")
+  rechazado     @map("Rechazado")
+}
+
+enum enum_pagos_estado {
+  a_pagar    @map("A pagar")
+  pagado     @map("Pagado")
+  anulado    @map("Anulado")
+  recuperado @map("Recuperado")
+  vencido    @map("Vencido")
+}

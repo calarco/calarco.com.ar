@@ -1,0 +1,259 @@
+@keyframes appear-anim {
+    from {
+        filter: blur(0.5rem) contrast(2) contrast(0.8);
+    }
+    to {
+        filter: blur(0) contrast(1) contrast(1);
+    }
+}
+
+.appear {
+    animation: appear-anim 2s 0s cubic-bezier(0.5, 0, 0.1, 1) both;
+}
+
+@keyframes text-clip {
+    from {
+        clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+    }
+    to {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+.clipped {
+    animation: text-clip 1s 0s cubic-bezier(0.5, 0, 0.1, 1) both;
+}
+
+@keyframes x1 {
+    0% {
+        left: 15%;
+    }
+    50% {
+        left: 10%;
+    }
+    100% {
+        left: 15%;
+    }
+}
+
+@keyframes y1 {
+    0% {
+        top: 25%;
+    }
+    50% {
+        top: 35%;
+    }
+    100% {
+        top: 25%;
+    }
+}
+
+@keyframes x2 {
+    0% {
+        left: 30%;
+    }
+    50% {
+        left: 35%;
+    }
+    100% {
+        left: 30%;
+    }
+}
+
+@keyframes y2 {
+    0% {
+        top: 20%;
+    }
+    50% {
+        top: 30%;
+    }
+    100% {
+        top: 20%;
+    }
+}
+
+@keyframes x3 {
+    0% {
+        left: 40%;
+    }
+    50% {
+        left: 35%;
+    }
+    100% {
+        left: 40%;
+    }
+}
+
+@keyframes y3 {
+    0% {
+        top: 25%;
+    }
+    50% {
+        top: 30%;
+    }
+    100% {
+        top: 25%;
+    }
+}
+
+@keyframes x4 {
+    0% {
+        left: 50%;
+    }
+    50% {
+        left: 45%;
+    }
+    100% {
+        left: 50%;
+    }
+}
+
+@keyframes y4 {
+    0% {
+        top: 30%;
+    }
+    50% {
+        top: 35%;
+    }
+    100% {
+        top: 30%;
+    }
+}
+
+@keyframes x5 {
+    0% {
+        left: 60%;
+    }
+    50% {
+        left: 55%;
+    }
+    100% {
+        left: 60%;
+    }
+}
+
+@keyframes y5 {
+    0% {
+        top: 25%;
+    }
+    50% {
+        top: 30%;
+    }
+    100% {
+        top: 25%;
+    }
+}
+
+@keyframes x6 {
+    0% {
+        left: 25%;
+    }
+    50% {
+        left: 15%;
+    }
+    100% {
+        left: 25%;
+    }
+}
+
+@keyframes y6 {
+    0% {
+        top: 30%;
+    }
+    50% {
+        top: 25%;
+    }
+    100% {
+        top: 30%;
+    }
+}
+
+@keyframes x7 {
+    0% {
+        left: 50%;
+    }
+    50% {
+        left: 55%;
+    }
+    100% {
+        left: 50%;
+    }
+}
+
+@keyframes y7 {
+    0% {
+        top: 23%;
+    }
+    50% {
+        top: 20%;
+    }
+    100% {
+        top: 23%;
+    }
+}
+
+@keyframes vastag {
+    0% {
+        width: 20rem;
+    }
+    50% {
+        width: 30rem;
+    }
+    100% {
+        width: 20rem;
+    }
+}
+
+@keyframes forog {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.bubble {
+    position: absolute;
+    height: 40vh;
+    border-radius: 50%;
+    background: #777;
+    filter: blur(2rem);
+}
+
+.bubble:first-child {
+    transform: rotate(60deg);
+    animation: y1 linear 370s infinite, x1 ease-in-out 230s infinite,
+        vastag linear 290s infinite, forog linear 310s infinite;
+}
+
+.bubble:nth-child(2) {
+    animation: y2 ease-in 410s infinite, x2 ease-in-out 470s infinite,
+        vastag linear 230s infinite, forog linear 290s infinite;
+}
+
+.bubble:nth-child(3) {
+    transform: rotate(-60deg);
+    animation: y3 ease-out 430s infinite, x3 ease-in-out 530s infinite,
+        vastag linear 290s infinite, forog linear 310s infinite;
+}
+
+.bubble:nth-child(4) {
+    transform: rotate(70deg);
+    animation: y4 ease-in-out 470s infinite, x4 ease-in-out 590s infinite,
+        vastag linear 310s infinite, forog linear 410s infinite;
+}
+
+.bubble:nth-child(5) {
+    transform: rotate(90deg);
+    animation: y5 ease-in-out 290s infinite, x5 ease-in-out 310s infinite,
+        vastag linear 370s infinite, forog linear 470s infinite;
+}
+
+.bubble:nth-child(6) {
+    transform: rotate(90deg);
+    animation: y6 ease-in-out 290s infinite, x6 ease-in-out 310s infinite,
+        vastag linear 370s infinite, forog linear 470s infinite;
+}
+
+.bubble:last-child {
+    animation: y7 linear 530s infinite, x7 ease-in-out 290s infinite,
+        vastag linear 190s infinite, forog linear 370s infinite;
+}
