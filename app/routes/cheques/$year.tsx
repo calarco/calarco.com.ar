@@ -107,7 +107,7 @@ export default function Year() {
 
     return (
         <>
-            <section className="h-[calc(100vh-4rem)] relative z-40 bg-slate-50 shadow-lg grid dark:bg-slate-700 dark:shadow-2xl">
+            <section className="h-[calc(100vh-4rem)] relative z-40 bg-slate-50 dark:bg-gray-900 shadow-lg grid dark:shadow-2xl">
                 <SwitchTransition>
                     <CSSTransition
                         key={type}
@@ -128,10 +128,10 @@ export default function Year() {
                     </CSSTransition>
                 </SwitchTransition>
             </section>
-            <aside className="h-[calc(100vh-4rem)] grid grid-rows-[auto,1fr]">
-                <div className="w-full shadow border-none grid items-center">
+            <aside className="h-[calc(100vh-4rem)] bg-slate-100 dark:bg-[#0a0a0a]/80 grid grid-rows-[auto,1fr]">
+                <div className="w-full shadow-md border-none grid items-center">
                     <div className="py-3 px-6 grid grid-flow-col justify-between items-center">
-                        <div className="overflow-clip rounded-md bg-slate-50 shadow grid grid-flow-col items-center">
+                        <div className="overflow-clip rounded-md bg-slate-50 dark:bg-gray-800 shadow grid grid-flow-col items-center">
                             <Link
                                 to={`../${year - 1}/${type}/${estado}`}
                                 className="button rounded-none"
@@ -151,7 +151,7 @@ export default function Year() {
                                 >
                                     <Link
                                         to={`../${new Date().getFullYear()}/${type}/${estado}`}
-                                        className="button rounded-none font-mono text-orange-600"
+                                        className="button rounded-none font-mono text-orange-600 dark:text-orange-500"
                                     >
                                         {year}
                                     </Link>
@@ -171,16 +171,20 @@ export default function Year() {
                     </div>
                     <div className="grid grid-flow-col auto-cols-fr">
                         <div className="py-3 px-6 h-12 grid grid-flow-col justify-between items-center">
-                            <label className="text-gray-900/50">Pagos:</label>
+                            <label className="text-gray-900/50 dark:text-gray-100/50">
+                                Pagos:
+                            </label>
                             <Currency number={getTotal("pagos")} integer />
                         </div>
                         <div className="separator py-3 px-6 h-12 grid grid-flow-col justify-between items-center">
-                            <label className="text-gray-900/50">Cobros:</label>
+                            <label className="text-gray-900/50 dark:text-gray-100/50">
+                                Cobros:
+                            </label>
                             <Currency number={getTotal("cobros")} integer />
                         </div>
                     </div>
                 </div>
-                <div className="overflow-auto grid content-start divide-y divide-solid divide-gray-500/20">
+                <div className="overflow-auto grid content-start divide-y divide-solid divide-gray-200 dark:divide-gray-700">
                     {data?.map((month) => (
                         <Card
                             key={month.id}
@@ -214,13 +218,13 @@ export default function Year() {
                                 } overflow-clip grid grid-flow-col auto-cols-fr`}
                             >
                                 <div className="py-3 px-6 h-12 grid grid-flow-col justify-between items-center">
-                                    <label className="text-gray-900/50">
+                                    <label className="text-gray-900/50 dark:text-gray-100/50">
                                         Pagos:
                                     </label>
                                     <Currency number={month.pagos} integer />
                                 </div>
                                 <div className="separator py-3 px-6 h-12 grid grid-flow-col justify-between items-center">
-                                    <label className="text-gray-900/50">
+                                    <label className="text-gray-900/50 dark:text-gray-100/50">
                                         Cobros:
                                     </label>
                                     <Currency number={month.cobros} integer />

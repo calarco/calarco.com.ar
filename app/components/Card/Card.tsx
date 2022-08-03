@@ -9,9 +9,9 @@ type ComponentProps = {
 const Card = function ({ isActive, children, className }: ComponentProps) {
     return (
         <div
-            className={`relative top-0 transition transition-200 ease-in-out hover:cursor-pointer hover:bg-sky-700/20 ${
+            className={`relative top-0 transition transition-200 ease-in-out hover:cursor-pointer hover:bg-sky-700/20 dark:hover:bg-sky-600/20 ${
                 isActive &&
-                "sticky bottom-0 z-30 bg-orange-500/20 hover:bg-orange-500/20 hover:cursor-default"
+                "sticky bottom-0 z-30 bg-orange-500/20 dark:bg-orange-400/20 hover:bg-orange-400/20 dark:hover:bg-orange-400/20 hover:cursor-default"
             } ${className}`}
         >
             {children}

@@ -56,7 +56,7 @@ const Table = ({ data, columns, className, children }: ComponentProps) => {
         <table
             className={`absolute inset-0 grid grid-rows-[auto,1fr] text-center ${className}`}
         >
-            <thead className="shadow">
+            <thead className="shadow-md">
                 {children}
                 <tr className="grid grid-flow-col auto-cols-fr gap-px">
                     {columns.map(({ label, accessor, sortable }) => (
@@ -78,7 +78,7 @@ const Table = ({ data, columns, className, children }: ComponentProps) => {
                         >
                             {label}
                             {sortable && (
-                                <span className="pl-2 text-slate-900/50">
+                                <span className="pl-2 text-slate-900/50 dark:text-slate-100/50">
                                     {sortField === accessor && !inverse
                                         ? "⇂"
                                         : sortField === accessor && inverse
@@ -101,9 +101,9 @@ const Table = ({ data, columns, className, children }: ComponentProps) => {
                         exitActive: "opacity-0",
                     }}
                 >
-                    <tbody className="transition duration-150 overflow-auto divide-y divide-solid grid content-start">
+                    <tbody className="transition duration-150 overflow-auto divide-y divide-solid divide-gray-200 dark:divide-gray-700 grid content-start">
                         {!tableData[0] ? (
-                            <tr className="p-10 text-center text-gray-900/50 grid">
+                            <tr className="p-10 text-center text-gray-900/50 dark:text-slate-100/50 grid">
                                 <td>No se encontraron resultados</td>
                             </tr>
                         ) : (
@@ -111,7 +111,7 @@ const Table = ({ data, columns, className, children }: ComponentProps) => {
                                 <tr
                                     key={rowData.id}
                                     onClick={() => navigate(`${rowData.id}`)}
-                                    className="grid grid-flow-col auto-cols-fr hover:cursor-pointer hover:bg-sky-700/20"
+                                    className="grid grid-flow-col auto-cols-fr hover:cursor-pointer hover:bg-sky-700/20 dark:hover:bg-sky-600/20"
                                 >
                                     {columns.map(({ accessor, type }) => {
                                         const tData = rowData[accessor] || "——";

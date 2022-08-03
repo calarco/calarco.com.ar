@@ -3,7 +3,8 @@ module.exports = {
     theme: {
         fontFamily: {
             sans: ["Supreme-Variable", "sans-serif"],
-            mono: ["SpaceMono-Regular", "serif"],
+            serif: ["GrenzeGotisch-Variable", "serif"],
+            mono: ["SpaceMono-Regular", "mono"],
         },
         extend: {},
     },

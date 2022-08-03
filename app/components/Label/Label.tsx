@@ -18,7 +18,7 @@ const Label = function ({
 }: ComponentProps) {
     return (
         <div
-            className={`relative bg-slate-50 px-4 pt-2 pb-2.5 grid content-between gap-x-4 gap-y-2 ${className}`}
+            className={`relative bg-slate-50 dark:bg-gray-900 px-4 pt-2 pb-2.5 grid content-between gap-x-4 gap-y-2 ${className}`}
             style={{ gridColumnEnd: "span " + length || 1 }}
         >
             <SwitchTransition>
@@ -37,7 +37,9 @@ const Label = function ({
                 >
                     <label
                         className={`transition grid gap-4 text-sm font-light ${
-                            error ? "text-red-600" : "text-slate-900/50"
+                            error
+                                ? "text-red-600"
+                                : "text-gray-900/50 dark:text-gray-100/50"
                         }`}
                     >
                         {error ? error : title}

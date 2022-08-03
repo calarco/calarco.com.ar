@@ -407,7 +407,7 @@ export default function CobroForm() {
                     autoComplete="off"
                 />
             </Label>
-            <div className="col-span-7 bg-slate-50 grid grid-flow-col">
+            <div className="col-span-7 bg-slate-50 dark:bg-gray-900 grid grid-flow-col">
                 <button
                     type="button"
                     onClick={() => navigate("..")}

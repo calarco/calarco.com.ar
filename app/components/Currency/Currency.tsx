@@ -27,7 +27,7 @@ const Currency = function ({ number, integer }: ComponentProps) {
                             .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
                     </span>
                     {!integer && (
-                        <small className="pl-2 text-xs text-gray-900/50">
+                        <small className="pl-2 text-xs text-gray-900/50 dark:text-gray-100/50">
                             {number.toString().split(".")[1]
                                 ? (
                                       number.toString().split(".")[1] + "0"

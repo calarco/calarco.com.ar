@@ -4,21 +4,21 @@
 
 @layer base {
     select {
-        @apply px-4 py-2 w-full rounded-md bg-transparent bg-slate-100 shadow-inner font-normal appearance-none transition hover:cursor-pointer hover:bg-sky-700/20 focus:bg-orange-400/20 focus:outline-none;
+        @apply px-4 py-2 w-full rounded-md bg-transparent bg-slate-100 dark:bg-gray-800 shadow-inner font-normal appearance-none transition hover:cursor-pointer hover:bg-sky-700/20 dark:hover:bg-sky-600/20 focus:bg-orange-400/20 focus:outline-none;
     }
     input {
-        @apply px-4 py-2 w-full rounded-md bg-transparent bg-slate-100 shadow-inner font-normal appearance-none transition hover:bg-sky-700/20 focus:bg-orange-400/20 focus:outline-none;
+        @apply px-4 py-2 w-full rounded-md bg-transparent bg-slate-100 dark:bg-gray-800 shadow-inner font-normal appearance-none transition hover:bg-sky-700/20 dark:hover:bg-sky-600/20 focus:bg-orange-400/20 focus:outline-none;
     }
 }
 
 @layer components {
     .button {
-        @apply px-6 py-2 rounded-md text-sky-700 font-normal uppercase text-center transition hover:cursor-pointer hover:bg-sky-700/20 active:text-orange-600 disabled:pointer-events-none disabled:text-gray-600/60;
+        @apply px-6 py-2 rounded-md text-sky-700 dark:text-sky-500 font-normal uppercase text-center transition hover:cursor-pointer hover:bg-sky-700/20 dark:hover:bg-sky-600/20 active:text-orange-600 dark:active:text-orange-500 disabled:pointer-events-none disabled:text-gray-600/60 dark:disabled:text-gray-600/60;
     }
 }
 
 @layer utilities {
     .separator {
-        @apply relative after:content-[""] after:absolute after:-left-px after:top-[calc(50%-0.75rem)] after:h-[1.5rem] after:border-l after:border-solid after:border-gray-500/20;
+        @apply relative after:content-[""] after:absolute after:-left-px after:top-[calc(50%-0.75rem)] after:h-[1.5rem] after:border-l after:border-solid after:border-gray-200 dark:after:border-gray-700;
     }
 }
