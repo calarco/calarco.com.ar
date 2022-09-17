@@ -1,12 +1,18 @@
 import { useState, useEffect } from "react";
+import type { ReactNode } from "react";
 import { useNavigate } from "@remix-run/react";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 
 import { Day } from "~/components/Day";
 import { Currency } from "~/components/Currency";
 
-type ComponentProps = {
-    data: Pago[] | Cobro[];
+const Table = ({
+    data,
+    columns,
+    className,
+    children,
+}: {
+    data: any;
     columns: {
         label: string;
         accessor: string;
@@ -15,22 +21,16 @@ type ComponentProps = {
     }[];
     className?: string;
     children?: ReactNode;
-};
-
-const Table = ({ data, columns, className, children }: ComponentProps) => {
+}) => {
     const navigate = useNavigate();
-    const [tableData, setTableData] = useState<Pago[]>([{}]);
-    const [sortField, setSortField] = useState("");
+    const [tableData, setTableData] = useState([{}]);
+    const [sortField, setSortField] = useState(columns[0].sortable ? columns[0].accessor : "");
     const [inverse, setInverse] = useState(false);
 
-    const handleSortingChange = (accessor) => {
+    const handleSortingChange = (accessor: string) => {
         setSortField(accessor);
         setInverse(accessor === sortField ? !inverse : false);
     };
-
-    useEffect(() => {
-        setSortField(columns[0].sortable ? columns[0].accessor : "");
-    }, [columns]);
 
     useEffect(() => {
         data &&
@@ -65,7 +65,7 @@ const Table = ({ data, columns, className, children }: ComponentProps) => {
                             onClick={
                                 sortable
                                     ? () => handleSortingChange(accessor)
-                                    : null
+                                    : undefined
                             }
                             className={`separator p-3 transition ${
                                 sortable &&
@@ -106,6 +106,8 @@ const Table = ({ data, columns, className, children }: ComponentProps) => {
                             <tr className="p-10 text-center text-gray-900/50 dark:text-slate-100/50 grid">
                                 <td>No se encontraron resultados</td>
                             </tr>
+                        ) : tableData[0].id === undefined ? (
+                            <></>
                         ) : (
                             tableData.map((rowData) => (
                                 <tr

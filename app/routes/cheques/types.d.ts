@@ -1,10 +1,3 @@
-type Pagos = {
-    total: number;
-    limit: number;
-    skip: number;
-    data: Pago[];
-};
-
 type Pago = {
     id: number;
     emision: string;
@@ -16,13 +9,6 @@ type Pago = {
     estado: string;
     createdAt: string;
     updatedAt: string;
-};
-
-type Cobros = {
-    total: number;
-    limit: number;
-    skip: number;
-    data: Cobro[];
 };
 
 type Cobro = {
@@ -41,13 +27,6 @@ type Cobro = {
     destinatarioId?: number;
     createdAt: string;
     updatedAt: string;
-};
-
-type Total = {
-    total: number;
-    limit: number;
-    skip: number;
-    data: [{ total: number }];
 };
 
 type PagoInputs = {

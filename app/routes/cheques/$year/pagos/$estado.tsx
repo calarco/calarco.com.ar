@@ -103,7 +103,7 @@ export default function Pagos() {
                         </form>
                     </th>
                     <th className="px-3 grid items-center">
-                        <div className="overflow-clip rounded-md bg-slate-100 dark:bg-gray-800 shadow-inner grid grid-flow-col gap-px">
+                        <div className="overflow-clip rounded-md bg-slate-100 dark:bg-gray-900 shadow-inner grid grid-flow-col gap-px">
                             <Link
                                 to="../a_pagar"
                                 className="button rounded-none text-orange-600 dark:text-orange-500"
@@ -144,7 +144,7 @@ export default function Pagos() {
                     }}
                 >
                     <div
-                        className={`transition absolute inset-0 overflow-auto p-6 bg-slate-100/60 dark:bg-neutral-900/70 backdrop-blur grid items-center ${
+                        className={`transition absolute inset-0 overflow-auto p-6 bg-slate-100/60 dark:bg-gray-900/70 backdrop-blur grid items-center ${
                             pagoId ? "visible" : "invisible"
                         }`}
                     >

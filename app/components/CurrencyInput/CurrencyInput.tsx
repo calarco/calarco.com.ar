@@ -1,13 +1,15 @@
 import MaskedInput from "react-text-mask";
 import createNumberMask from "text-mask-addons/dist/createNumberMask";
 
-type ComponentProps = {
+const CurrencyInput = ({
+    name,
+    defaultValue,
+    disabled,
+}: {
     name: string;
     defaultValue?: string;
     disabled?: boolean;
-};
-
-const CurrencyInput = ({ name, defaultValue, disabled }: ComponentProps) => {
+}) => {
     const currencyMask = createNumberMask({
         prefix: "",
         suffix: "",

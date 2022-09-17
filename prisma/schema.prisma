@@ -7,6 +7,137 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model users {
+  id            Int      @id @default(autoincrement())
+  username      String   @unique @db.VarChar(255)
+  password      String   @db.VarChar(255)
+  createdAt     DateTime @db.Timestamptz(6)
+  updatedAt     DateTime @db.Timestamptz(6)
+  cobros        cobros[]
+  pagos         pagos[]
+  compras       compras[]
+  precios       precios[]
+  aumentos      aumentos[]
+  bancos        bancos[]
+  destinatarios destinatarios[]
+  libradores    libradores[]
+  proveedores   proveedores[]
+  clientes      clientes[]
+  fabricantes   fabricantes[]
+  modelos       modelos[]
+  presupuestos  presupuestos[]
+  reparaciones  reparaciones[]
+  turnos        turnos[]
+  vehiculos     vehiculos[]
+}
+
+model clientes {
+  id        Int         @id @default(autoincrement())
+  nombre    String      @default("") @db.VarChar(255)
+  apellido  String      @default("") @db.VarChar(255)
+  dni       String      @default("") @db.VarChar(255)
+  empresa   String      @default("") @db.VarChar(255)
+  telefono  String      @unique @default("") @db.VarChar(255)
+  email     String      @default("") @db.VarChar(255)
+  createdAt DateTime    @db.Timestamptz(6)
+  updatedAt DateTime    @db.Timestamptz(6)
+  vehiculos vehiculos[]
+  userId    Int?
+  users     users? @relation(fields: [userId], references: [id])
+}
+
+model fabricantes {
+  id        Int       @id @default(autoincrement())
+  nombre    String    @db.VarChar(255)
+  createdAt DateTime  @db.Timestamptz(6)
+  updatedAt DateTime  @db.Timestamptz(6)
+  modelos   modelos[]
+  userId    Int?
+  users     users? @relation(fields: [userId], references: [id])
+}
+
+model modelos {
+  id           Int            @id @default(autoincrement())
+  nombre       String         @db.VarChar(255)
+  createdAt    DateTime       @db.Timestamptz(6)
+  updatedAt    DateTime       @db.Timestamptz(6)
+  fabricanteId Int?
+  fabricantes  fabricantes?   @relation(fields: [fabricanteId], references: [id])
+  presupuestos presupuestos[]
+  turnos       turnos[]
+  vehiculos    vehiculos[]
+  userId       Int?
+  users        users? @relation(fields: [userId], references: [id])
+}
+
+model presupuestos {
+  id        Int      @id @default(autoincrement())
+  patente   String   @db.VarChar(7)
+  km        String   @db.VarChar(7)
+  motivo    String   @db.VarChar(255)
+  labor     String   @db.VarChar(7)
+  repuestos Json     @db.Json
+  createdAt DateTime @db.Timestamptz(6)
+  updatedAt DateTime @db.Timestamptz(6)
+  modeloId  Int?
+  modelos   modelos? @relation(fields: [modeloId], references: [id])
+  userId    Int?
+  users     users? @relation(fields: [userId], references: [id])
+}
+
+model reparaciones {
+  id         Int        @id @default(autoincrement())
+  km         String     @db.VarChar(7)
+  reparacion String     @db.VarChar(255)
+  repuestos  String     @db.VarChar(255)
+  costo      String     @db.VarChar(7)
+  labor      String     @db.VarChar(7)
+  createdAt  DateTime   @db.Timestamptz(6)
+  updatedAt  DateTime   @db.Timestamptz(6)
+  vehiculoId Int?
+  vehiculos  vehiculos? @relation(fields: [vehiculoId], references: [id])
+  userId     Int?
+  users      users? @relation(fields: [userId], references: [id])
+}
+
+model turnos {
+  id        Int      @id @default(autoincrement())
+  fecha     DateTime @db.Timestamptz(6)
+  motivo    String   @db.VarChar(255)
+  createdAt DateTime @db.Timestamptz(6)
+  updatedAt DateTime @db.Timestamptz(6)
+  modeloId  Int?
+  modelos   modelos? @relation(fields: [modeloId], references: [id])
+  userId    Int?
+  users     users? @relation(fields: [userId], references: [id])
+}
+
+model vehiculos {
+  id           Int                        @id @default(autoincrement())
+  patente      String                     @db.VarChar(7)
+  year         String                     @default("") @db.VarChar(4)
+  combustible  enum_vehiculos_combustible @default(Nafta)
+  cilindrada   String                     @default("") @db.VarChar(7)
+  vin          String                     @default("") @db.VarChar(17)
+  createdAt    DateTime                   @db.Timestamptz(6)
+  updatedAt    DateTime                   @db.Timestamptz(6)
+  clienteId    Int?
+  modeloId     Int?
+  clientes     clientes?                  @relation(fields: [clienteId], references: [id])
+  modelos      modelos?                   @relation(fields: [modeloId], references: [id])
+  reparaciones reparaciones[]
+  userId       Int?
+  users        users? @relation(fields: [userId], references: [id])
+}
+
+enum enum_vehiculos_combustible {
+  Nafta
+  Diesel
+  GNC
+  Electrico
+  Hibrido
+}
+
 model aumentos {
   id         Int       @id @default(autoincrement())
   nombre     String?   @unique @db.VarChar(255)
@@ -26,17 +157,6 @@ model bancos {
   cobros    cobros[]
   userId    Int?
   users     users? @relation(fields: [userId], references: [id])
-}
-
-model clientes {
-  id          Int      @id @default(autoincrement())
-  nombre      String   @unique @db.VarChar(255)
-  descripcion String   @db.VarChar(255)
-  createdAt   DateTime @db.Timestamptz(6)
-  updatedAt   DateTime @db.Timestamptz(6)
-  ventas      ventas[]
-  userId      Int?
-  users       users? @relation(fields: [userId], references: [id])
 }
 
 model cobros {
@@ -135,39 +255,6 @@ model proveedores {
   createdAt   DateTime  @db.Timestamptz(6)
   updatedAt   DateTime  @db.Timestamptz(6)
   compras     compras[]
-  userId      Int?
-  users       users? @relation(fields: [userId], references: [id])
-}
-
-model users {
-  id            Int      @id @default(autoincrement())
-  username      String   @unique @db.VarChar(255)
-  password      String   @db.VarChar(255)
-  createdAt     DateTime @db.Timestamptz(6)
-  updatedAt     DateTime @db.Timestamptz(6)
-  cobros        cobros[]
-  pagos         pagos[]
-  compras       compras[]
-  precios       precios[]
-  ventas        ventas[]
-  aumentos      aumentos[]
-  bancos        bancos[]
-  clientes      clientes[]
-  destinatarios destinatarios[]
-  libradores    libradores[]
-  proveedores   proveedores[]
-}
-
-model ventas {
-  id          Int       @id @default(autoincrement())
-  fecha       DateTime  @db.Date
-  debe        Decimal   @default(0) @db.Decimal(10, 2)
-  haber       Decimal   @default(0) @db.Decimal(10, 2)
-  comprobante String    @default("") @db.VarChar(255)
-  createdAt   DateTime  @db.Timestamptz(6)
-  updatedAt   DateTime  @db.Timestamptz(6)
-  clienteId   Int?
-  clientes    clientes? @relation(fields: [clienteId], references: [id])
   userId      Int?
   users       users? @relation(fields: [userId], references: [id])
 }

@@ -1,24 +1,22 @@
 import type { ReactNode } from "react";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 
-type ComponentProps = {
-    title: string;
-    length?: number;
-    error?: string;
-    children: ReactNode;
-    className?: string;
-};
-
 const Label = function ({
     title,
     error,
     length,
     children,
     className,
-}: ComponentProps) {
+}: {
+    title: string;
+    length?: number;
+    error?: string;
+    children: ReactNode;
+    className?: string;
+}) {
     return (
         <div
-            className={`relative bg-slate-50 dark:bg-gray-900 px-4 pt-2 pb-2.5 grid content-between gap-x-4 gap-y-2 ${className}`}
+            className={`relative bg-slate-50 dark:bg-gray-800 px-4 pt-2 pb-2.5 grid content-between gap-x-4 gap-y-2 ${className}`}
             style={{ gridColumnEnd: "span " + length || 1 }}
         >
             <SwitchTransition>
@@ -38,7 +36,7 @@ const Label = function ({
                     <label
                         className={`transition grid gap-4 text-sm font-light ${
                             error
-                                ? "text-red-600"
+                                ? "text-red-600 dark:text-red-500"
                                 : "text-gray-900/50 dark:text-gray-100/50"
                         }`}
                     >

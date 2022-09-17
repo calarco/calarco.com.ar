@@ -1,11 +1,12 @@
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 
-type ComponentProps = {
+const Currency = function ({
+    number,
+    integer,
+}: {
     number: number;
     integer?: boolean;
-};
-
-const Currency = function ({ number, integer }: ComponentProps) {
+}) {
     return (
         <SwitchTransition>
             <CSSTransition
@@ -19,7 +20,9 @@ const Currency = function ({ number, integer }: ComponentProps) {
                 }}
             >
                 <pre className="font-mono transition duration-150">
-                    <span className="pr-2 text-gray-900/50">$</span>
+                    <span className="pr-2 text-gray-900/50 dark:text-gray-100/50">
+                        $
+                    </span>
                     <span>
                         {number
                             .toString()

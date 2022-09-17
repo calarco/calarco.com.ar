@@ -1,9 +1,10 @@
-type ComponentProps = {
+const Day = function ({
+    date,
+    className,
+}: {
     date: string;
     className?: string;
-};
-
-const Day = function ({ date, className }: ComponentProps) {
+}) {
     return (
         <pre className={`font-mono ${className}`}>
             {date.substring(8, 10)}

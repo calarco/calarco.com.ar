@@ -1,12 +1,14 @@
 import type { ReactNode } from "react";
 
-type ComponentProps = {
+const Card = function ({
+    isActive,
+    children,
+    className,
+}: {
     isActive?: boolean;
     children: ReactNode;
     className?: string;
-};
-
-const Card = function ({ isActive, children, className }: ComponentProps) {
+}) {
     return (
         <div
             className={`relative top-0 transition transition-200 ease-in-out hover:cursor-pointer hover:bg-sky-700/20 dark:hover:bg-sky-600/20 ${

@@ -107,8 +107,8 @@ export default function Year() {
 
     return (
         <>
-            <section className="h-[calc(100vh-4rem)] relative z-40 bg-slate-50 dark:bg-gray-900 shadow-lg grid dark:shadow-2xl">
-                <SwitchTransition>
+            <section className="h-[calc(100vh-4rem)] relative z-40 bg-slate-50 dark:bg-gray-800 shadow-lg dark:shadow-2xl grid">
+                <SwitchTransition mode="in-out">
                     <CSSTransition
                         key={type}
                         timeout={{
@@ -128,7 +128,7 @@ export default function Year() {
                     </CSSTransition>
                 </SwitchTransition>
             </section>
-            <aside className="h-[calc(100vh-4rem)] bg-slate-100 dark:bg-[#0a0a0a]/80 grid grid-rows-[auto,1fr]">
+            <aside className="h-[calc(100vh-4rem)] bg-slate-100 dark:bg-gray-900 grid grid-rows-[auto,1fr]">
                 <div className="w-full shadow-md border-none grid items-center">
                     <div className="py-3 px-6 grid grid-flow-col justify-between items-center">
                         <div className="overflow-clip rounded-md bg-slate-50 dark:bg-gray-800 shadow grid grid-flow-col items-center">

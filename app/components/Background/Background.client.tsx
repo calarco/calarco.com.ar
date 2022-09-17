@@ -2,11 +2,7 @@ import { useRef, useEffect } from "react";
 import p5 from "p5";
 import type p5Types from "p5";
 
-type ComponentProps = {
-    location: string;
-};
-
-const Background = function ({ location }: ComponentProps) {
+const Background = function () {
     const nodeRef = useRef(null);
 
     useEffect(() => {
@@ -17,11 +13,11 @@ const Background = function ({ location }: ComponentProps) {
             const opt = {
                 noiseScale: 0.009,
                 angle: (Math.PI / 180) * -90,
-                h1: rand(320, 360),
-                h2: rand(160, 190),
+                h1: 190,
+                h2: 10,
                 s1: rand(30, 60),
                 s2: rand(30, 60),
-                l1: rand(40, 50),
+                l1: rand(50, 60),
                 l2: rand(40, 50),
             };
             let time = 0;
@@ -126,8 +122,8 @@ const Background = function ({ location }: ComponentProps) {
 
             function mouseClicked() {
                 opt.angle += deg(rand(60, 60)) * (Math.random() > 0.5 ? 1 : -1);
-                opt.h1 = rand(0, 360);
-                opt.h2 = rand(0, 360);
+                opt.h1 = rand(180, 360);
+                opt.h2 = rand(0, 180);
                 opt.s1 = rand(30, 60);
                 opt.s2 = rand(30, 60);
                 opt.l1 = rand(40, 50);

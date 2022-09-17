@@ -55,7 +55,7 @@ export default function Login() {
                         placeholder="-"
                     />
                 </Label>
-                <div className="w-full bg-slate-50 dark:bg-gray-900 grid">
+                <div className="w-full bg-slate-50 dark:bg-gray-800 grid">
                     <button type="submit" className="button rounded-none">
                         Iniciar Sesion
                     </button>
@@ -71,7 +71,7 @@ export default function Login() {
                 <input type="hidden" name="password" value="test" />
                 <button
                     type="submit"
-                    className="button bg-slate-50 dark:bg-gray-900"
+                    className="button bg-slate-50 dark:bg-gray-800"
                 >
                     Probar
                 </button>
